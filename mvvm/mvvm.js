@@ -96,7 +96,7 @@ const viewmodel2 = ViewModel.get({
    },
    wrapper: ViewModel.get({
      styles: {width: '50%', background: '#fff', cursor:'pointer'},
-     events: {click(e, vm){vm.isStop = true}}
+     events: {click(e, vm){vm.isStop = !vm.isStop}}
    }),
    title: ViewModel.get({
      properties: {innerHTML : 'Title'}

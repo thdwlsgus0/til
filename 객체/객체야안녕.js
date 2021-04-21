@@ -1,6 +1,6 @@
 let user = {};
-user.name = 'John';
-user.surname = 'Smith';
+user.name = "John";
+user.surname = "Smith";
 user.name = 'Pete';
 delete user.name;
-console.log(user.name, user.surname);
+console.log(user);
