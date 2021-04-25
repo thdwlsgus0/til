@@ -1,9 +1,8 @@
 const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-  entry: {
-    main: './src/index.js'
-  },
+  entry:  './src/index',
   
   module:  {
     rules: [
@@ -19,15 +18,12 @@ module.exports = {
           { loader: 'css-loader'}
         ]
       },
-      {
-        test: /\.jfif$/,
-        loader:'file-loader',
-        options: {
-          name: '[name].[ext]'
-        }
-      }
     ]
   },
+
+  plugins: [
+    new HtmlWebpackPlugin({template: './index.html'})
+  ],
 
   resolve:{
     extensions: ['.js', '.jsx']
