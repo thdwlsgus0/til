@@ -1,30 +1,41 @@
 import React, {useState} from 'react';
+import Template from './components/Template';
+import TodoList from './components/TodoList';
+import './App.css';
+import {MdAddCircle} from 'react-icons/md';
+import TodoInsert from './components/TodoInsert';
 
 const App = () => {
-  const [checkList, setCheckList] = useState([false, false, false]);
-  const handleCheckClick = (index) => {
-    setCheckList((checks) => checks.map((c, i)=> (i===index? !c:c)))
-  }
-  const labels = ['check 1', 'check 2', 'check 3'];
-  const isAllChecked = checkList.every((x) => x);
-  const labelList = labels.map((value, idx)=>{
-    <li key={idx}>
-      <input
-      type='checkbox'
-      checked={checkList[idx]}
-      onClick = {()=> handleCheckClick(idx)} 
-      />
-      {value}
-    </li>
-  });
+  const [insertToggle, setInsertToggle] = useState(false);
+  const [todos, setTodos] = useState([
+    {
+      id:1,
+      text:"할일 1",
+      checked: true
+    },
+    {
+      id:2,
+      text:"할일 2",
+      checked: false
+    },
+    {
+      id:3,
+      text:"할일 3",
+      checked: true
+    }
+  ]);
 
+  const onInsertToggle = () => {
+    setInsertToggle(prev => !prev);
+  }
   return (
-    <div>
-      <ul>
-        {labelList}
-      </ul>
-      <button type="button" disabled={!isAllChecked}>다음</button>
-    </div>
+     <Template todoLength={todos.length}>
+       <TodoList todos={todos}/>
+       <div className="addTodoButton" onClick={onInsertToggle}>
+         <MdAddCircle/>
+       </div>
+       {insertToggle && <TodoInsert/>}
+     </Template>
   )
 }
 
